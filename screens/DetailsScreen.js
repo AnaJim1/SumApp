@@ -1,8 +1,10 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { AntDesign } from '@expo/vector-icons'; // for heart icon
 
 export default function DetailsScreen({ route }) {
   const { character } = route.params;
+  const [liked, setLiked] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -10,6 +12,17 @@ export default function DetailsScreen({ route }) {
       <Text style={styles.name}>{character.name}</Text>
       <Text style={styles.anime}>From: {character.anime}</Text>
       <Text style={styles.description}>{character.description}</Text>
+
+      {/* Heart React */}
+      <TouchableOpacity onPress={() => setLiked(!liked)} style={styles.heartButton}>
+  <AntDesign
+    name={liked ? 'heart' : 'hearto'}
+    size={24} // smaller icon size
+    color={liked ? 'red' : 'gray'}
+  />
+  <Text style={styles.heartText}>{liked ? 'Liked' : 'Like'}</Text>
+</TouchableOpacity>
+
     </View>
   );
 }
@@ -40,5 +53,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     paddingHorizontal: 20,
+    marginBottom: 20,
   },
+  heartButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
+    marginTop: 10,
+  },
+  heartText: {
+    fontSize: 14, // smaller text
+    fontWeight: '500',
+    color: '#333',
+  },
+  
 });
