@@ -7,12 +7,12 @@ export default function LandingPage() {
 
   return (
     <ImageBackground
-      source={require('../assets/landing.jpg')} // make sure your image is here
+      source={require('../assets/landing.jpg')} // make sure your image exists
       style={styles.background}
       resizeMode="cover"
     >
       <View style={styles.overlay}>
-        <Text style={styles.title}>Anime Character Information and Recommendation</Text>
+        <Text style={styles.title}>Anime Information</Text>
 
         {/* Get Started Button */}
         <TouchableOpacity
